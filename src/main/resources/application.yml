@@ -1,0 +1,35 @@
+micronaut:
+    server:
+        port: 8080
+    application:
+        name: hello-world
+
+datasources:
+    default:
+        url: jdbc:postgresql:postgres
+        username: postgres
+        password: postgres
+        driverClassName: org.postgresql.Driver
+
+flyway:
+    locations: /db/migrations/all
+
+jpa:
+    default:
+        packages-to-scan:
+            - 'hello.domain'
+        properties:
+            hibernate:
+                show_sql: true
+
+endpoints:
+    health:
+        enabled: True
+        sensitive: True
+        id: health
+        disk-space:
+            enabled: true
+            path: /disk
+            threshold: 100M
+        jdbc:
+            enabled: true
